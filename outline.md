@@ -109,6 +109,8 @@
 - Percentage of households surveyed per village
 - Percentage of households by access type
 - label: summary_table: table with number of villages by access type and number of households
+- rows: access type
+- columns: number of households total, number of households surveyed
 
 ## Survey Questions
 
@@ -119,26 +121,6 @@
 - Do you currently own appliance X?
 - If electricity available, will you buy appliance X?
 - We demonstrate several approaches to estimating eventual ownership
-
-## electricity consumption results
-
-- We observe electricity consumption by village
-- Electricity consumption varies by connection type
-- We observe 85% or greater uptime for grid connected villages
-- We observe 15% to 25% uptime for microgrids
-
-## comparison of predicted and observed electricity use
-
-- Do these low uptimes constrain appliance use and invalidate the study
-    predictions?
-- How sensitive are our predictions to the assumptions about appliance
-    power and the number of light bulbs?
-
-## accuracy of appliance surveys as a prediction tool
-
-- point estimates
-- probabilistic estimates
-
 
 # Results
 
@@ -180,9 +162,53 @@
 of each type of appliance based on current electricity access type.
 ](figures/appliance-ownership-by-access-type.png)
 
+## Appliance Use Variation
 
+### Hourly use
+- Survey responses indicate more appliance use in grid connected areas.
+- This reveals a measure of latent demand
+- Latent demand has two factors, appliance purchase and service increase
+- Figure: appliance-hours-detail
+- 2016-02-22-appliance-hours-detail.ipynb
+
+### Energy use
+- By estimating the power of appliances we can estimate the daily energy
+    use for appliances
+- By summing over these appliance types, we can estimate the overall
+    electricity use
+
+## electricity consumption results
+
+- We observe electricity consumption by village
+- Electricity consumption varies by connection type
+- We observe 85% or greater uptime for grid connected villages
+- We observe 15% to 25% uptime for microgrids
+- We estimate daily use by only measuring the days with a full day of
+    electricity usage
+- Table:
+- rows: measured villages, access type
+- columns: average daily energy, unconstrained daily energy
+
+## comparison of predicted and observed electricity use
+
+- Do these low uptimes constrain appliance use and invalidate the study
+    predictions?
+- How sensitive are our predictions to the assumptions about appliance
+    power and the number of light bulbs?
+- Table or figure:
+- rows: measured villages, access type
+- columns: estimated daily energy use, observed average, unconstrained
+    daily
+- 2016-03-01-electricity-comparisons.ipynb
 
 # Discussion and Conclusion
+
+## Latent demand
+
+- Latent demand has multiple sources
+- The delivery of reliable electricity will stimulate appliance purchase
+- The delivery of reliable electricity will increase use in some
+    appliances
 
 ## Impacts
 
@@ -194,3 +220,5 @@ of each type of appliance based on current electricity access type.
 - longitudinal observations will allow us to observe the growth of
     appliance ownership through acquisition and the accompanying growth
     in electricity use
+- estimates of electricity increase from latent demand
+- signals in electricity use that signal latent demand increases
