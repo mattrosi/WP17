@@ -1,6 +1,6 @@
 # Abstract
 
-- new generation in under-served areas often to high
+- new generation in under-served areas often too high
 - we compare survey estimation to observed electricity use
 
 
@@ -68,10 +68,11 @@
 
 ## Lake Sentani Description
 
+<!-- todo: village sizes -->
+
 - Lake Sentani is an inland lake in Indonesia
 - Near the coastal city of Jayapura
 - Many island communities
-<!-- todo: village sizes -->
 - Area is surrounded by some grid access
 - Other areas accessed by community or utility administered microgrids
 
@@ -173,15 +174,19 @@ of each type of appliance based on current electricity access type.
 # Comparison of predicted and observed electricity use
 
 - We focus on the five villages in our survey that also have electricity data
-- Do these low uptimes constrain appliance use and invalidate the study
-    predictions?
-- How sensitive are our predictions to the assumptions about appliance
-    power and the number of light bulbs?
 - Table or figure:
 - rows: measured villages, access type
 - columns: estimated daily energy use, observed average, unconstrained
     daily
 - 2016-03-01-electricity-comparisons.ipynb
+
+- the appliance estimations underestimate the energy use observed on
+    these grids
+    - constraints on electricity availability should lead to overestimation
+    - ownership estimation errors
+    - number of lighting points isn't observed in survey
+    - unobserved or recently acquired appliances
+    - variance in power levels
 
 # Discussion and Conclusion
 
@@ -191,9 +196,6 @@ of each type of appliance based on current electricity access type.
 - The delivery of reliable electricity will stimulate appliance purchase
 - The delivery of reliable electricity will increase use in some
     appliances
-
-## Impacts
-
 - this forecasting comparison is valuable to practitioners
 - refining estimates will improve revenue and cost of capital long term
 
