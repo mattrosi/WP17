@@ -54,130 +54,111 @@
 - World Bank WPS4866
 
 
-# Methods
 
-## Overview
 
-- Collect survey data on current per household appliance ownership
-- Extrapolate energy usage based on a stochastic simulation of power and
-    time of use
-    - assume a distribution for the average power use of appliances
-    - assume a distribution of average times for appliance usage
-- Compare predicted to observed energy usage from metered villages
-
-## This approach
+# Methods Overview
 
 - We compare observed electricity consumption with a bottom-up
     estimation based on appliance survey data
+- Collect survey data on current per household appliance ownership
+    including hours of operation
+- Extrapolate energy usage based on a estimations of power
+- Measure distribution of daily energy for measured villages
+- Compare predicted to observed energy usage from metered villages
 
-## survey of appliance ownership results
+## Lake Sentani Description
 
-- we observe appliance ownership by household
-- appliance ownership varies by connection type
-- we observe hours per day and days per week of use
-- we assume the power level of appliances
-- from this, we create an estimate of the energy per day consumed if all
-    appliances working and grid has 100% uptime
-- we focus on the five villages covered by grid data
+- Lake Sentani is an inland lake in Indonesia
+- Near the coastal city of Jayapura
+- Many island communities
+<!-- todo: village sizes -->
+- Area is surrounded by some grid access
+- Other areas accessed by community or utility administered microgrids
 
-## Appliance Survey Basic Detail
 
-- The survey collected data on electricity use and assets for 1184
-    households in the Lake Sentani region
-- Electricity access among the surveyed households ranged from grid
-    access to village-level access, to only household-level sources of energy
-- For the appliance measurements we detail below, we have 417 grid
-    surveys, 160 microgrid surveys, and 182 surveys with no
-    village-level access
-- Of the total households available in a given village, the percentage
-    surveyed ranged from 45% to 75%
-- We are especially interested in comparisons between different levels
-    of access to energy
+![Lake Sentani Satellite Photo](./figures/lake-sentani.png)
+
+## Survey Basic Description
+
+- The survey was designed to ask questions relevant to the electricity
+    needs of the community
 - The survey was designed and administered by Advancing Energy and Cenderwash University
     as part of an electrification effort in the Lake Sentani region
+- Survey carried out in Q3 and Q4 of 2014
 - The survey used the ODK platform which allows for the electronic
     collection of data from hand-held tablet devices
 - The data was stored online using Ona
-- We downloaded the data in an Excel format for local analysis
+- The survey collected data on electricity use and assets for 1184
+    households in the Lake Sentani region
 
-## Basic Survey Results
+<!-- survey_counts.ipynb -->
 
+|                     |   total_surveys |   AE_count |   percent_surveyed |   valid_fraction_HH |
+|:--------------------|----------------:|-----------:|-------------------:|--------------------:|
+| PLN_grid            |             619 |        660 |           0.937879 |            0.631818 |
+| PLN_microgrid       |             170 |        170 |           1        |            0.676471 |
+| community_microgrid |              54 |         60 |           0.9      |            0.75     |
+| no_access           |             341 |        398 |           0.856784 |            0.457286 |
+
+- The survey covered dozens of villages with different levels of electricity access.
 - 26 Villages were surveyed
-- Range of village sizes from X to Y
+- We define three access types: grid, microgrid, no centralized
+- Electricity access among the surveyed households ranged from grid access to village-level access, to only household-level sources of energy
 - Range of percentage of households surveyed per village
 - Average households surveyed per village
 - Percentage of households surveyed per village
 - Percentage of households by access type
-- label: summary_table: table with number of villages by access type and number of households
-- rows: access type
-- columns: number of households total, number of households surveyed
+- Of the total households available in a given village, the percentage surveyed ranged from 45% to 75%
 
-## Survey Questions
 
-- The survey was designed to ask questions relevant to the electricity
-    needs of the community
-- The survey collects factors on income, assets, appliance ownership,
-    willingness to pay, and intention to purchase appliances
-- Do you currently own appliance X?
-- If electricity available, will you buy appliance X?
-- We demonstrate several approaches to estimating eventual ownership
+# Bottom Up Electricity Estimation
 
-# Results
+- We use our survey instrument to estimate the electricity use by villages
+- Information on the ownership of appliances and their use are combined with assumptions about the power level of appliances to form an estimate.
 
-## Bottom up electricity estimation
+## Survey Electricity Use Questions
+- The survey collected information on appliance ownership and use
+- we observe appliance ownership by household
+- We observe the reported percentage of appliance ownership in each access type or village by summing the yes/no response and dividing by the number of respondents
+- we also observe hours per day and days per week of use
+- We report for lighting, mobile phones, television, radio, refrigerators, fans, and rice cookers
+- we estimate the power level of appliances
+- multiplying the average power by the hours of use per day gives the energy per day
+- By summing over these appliance types, we can estimate the overall electricity use
+- we assume the population of non-responses has the same composition as the respondents
+- from this, we create an estimate of the energy per day consumed if all appliances working and grid has 100% uptime
+- From this method we can estimate the total energy use as well as the contribution of each type of appliance
+- We observe two contributions to variation
+    - Patterns of appliance ownership
+    - Patterns of appliance usage
+- If these villages are similar in other respects, we expect the locations with less reliable electricity to change their behavior to be similar to the grid when reliable electricity arrives.
+- Latent demand has two factors, appliance purchase and service increase
 
-- using survey results we estimate the electricity production
-- using distributions for appliance power and time of use we create a
-    probability distribution of energy use per day
+## Variation in Appliance Ownership Results
 
-## Appliance ownership variation
-
-### Method
-- We observe the overall reported percentage of household reporting
-    ownership of each appliance using survey questions
-- We report for lighting, mobile phones, television, radio,
-    refrigerators, fans, and rice cookers
-- We then split the dataset and assign each village to an access type
-    (grid, microgrid, no central access)
-- We observe the reported percentage of appliance ownership in each
-    access type by summing the yes/no response and dividing by the
-    number of respondents
-- We report the number of valid responses in each category
-
-### Results
-
-- We observe a low variation for TV, lighting, and mobile phone
-    ownership across access types
+- We observe a low variation for TV, lighting, and mobile phone ownership across access types
 - These are highly desirable services with modest energy requirements
-- We observe higher variation for rice cookers and refrigerators with
-    ownership concentrated in areas with grid connections
-- Since these appliances require greater power and energy, we expect
-    grid locations
-- We observe variation in radio ownership with concentration of
-    ownership in off-grid and community run microgrid areas
-- No explanation for this observation
+- We observe higher variation for rice cookers and refrigerators with ownership concentrated in areas with grid connections
+- Since these appliances require greater power and energy, we expect grid locations
+- We observe variation in radio ownership with concentration of ownership in off-grid and community run microgrid areas
 - label: appliance-ownership-by-access-type
 
 ![Percent Ownership: Plots percentages of households reporting ownership
 of each type of appliance based on current electricity access type.
 ](figures/appliance-ownership-by-access-type.png)
 
-## Appliance Use Variation
+## Variation in Hourly Use Results
 
-### Hourly use
 - Survey responses indicate more appliance use in grid connected areas.
 - This reveals a measure of latent demand
-- Latent demand has two factors, appliance purchase and service increase
+- We observe appliance energy variation by access type
+- table: hourly results by access-type or comparison village
 - Figure: appliance-hours-detail
 - 2016-02-22-appliance-hours-detail.ipynb
+- figure: appliance-hours-by-access-type
 
-### Energy use
-- By estimating the power of appliances we can estimate the daily energy
-    use for appliances
-- By summing over these appliance types, we can estimate the overall
-    electricity use
 
-## electricity consumption results
+# Electricity Consumption Measurements
 
 - We observe electricity consumption by village
 - Electricity consumption varies by connection type
@@ -189,8 +170,9 @@ of each type of appliance based on current electricity access type.
 - rows: measured villages, access type
 - columns: average daily energy, unconstrained daily energy
 
-## comparison of predicted and observed electricity use
+# Comparison of predicted and observed electricity use
 
+- We focus on the five villages in our survey that also have electricity data
 - Do these low uptimes constrain appliance use and invalidate the study
     predictions?
 - How sensitive are our predictions to the assumptions about appliance
