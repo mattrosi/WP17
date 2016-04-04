@@ -158,6 +158,7 @@ of each type of appliance based on current electricity access type.
 - 2016-02-22-appliance-hours-detail.ipynb
 - figure: appliance-hours-by-access-type
 
+![](./figures/energy-by-end-use.png)
 
 # Electricity Consumption Measurements
 
