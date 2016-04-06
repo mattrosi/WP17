@@ -127,6 +127,7 @@
 - multiplying the average power by the hours of use per day gives the energy per day
 - By summing over these appliance types, we can estimate the overall electricity use
 - we assume the population of non-responses has the same composition as the respondents
+- if a household reported owning appliance but did not report the hours of use, we assumed the hours were the average of the other responses
 - from this, we create an estimate of the energy per day consumed if all appliances working and grid has 100% uptime
 - From this method we can estimate the total energy use as well as the contribution of each type of appliance
 - We observe two contributions to variation
@@ -139,20 +140,24 @@
 
 - We observe a low variation for TV, lighting, and mobile phone ownership across access types
 - These are highly desirable services with modest energy requirements
-- We observe higher variation for rice cookers and refrigerators with ownership concentrated in areas with grid connections
+- Surveys indicate these appliances are used in areas without central access suggesting high usage of household-level electricity generation, likely from small petrol generators.
+- We observe higher ownership of rice cookers and refrigerators in areas with grid connections
 - Since these appliances require greater power and energy, we expect grid locations
-- We observe variation in radio ownership with concentration of ownership in off-grid and community run microgrid areas
+- We observe higher radio ownership with in microgrid areas
 - label: appliance-ownership-by-access-type
 
 ![Percent Ownership: Plots percentages of households reporting ownership
 of each type of appliance based on current electricity access type.
 ](figures/appliance-ownership-by-access-type.png)
 
-## Variation in Hourly Use Results
+## Variation in Energy Use Results
+
 
 - Survey responses indicate more appliance use in grid connected areas.
 - This reveals a measure of latent demand
 - We observe appliance energy variation by access type
+- In all areas, TV and lighting energy are a significant fraction of the demand.
+- In grid locations, a high amount of energy from refrigerators and rice cookers is also observed.
 - table: hourly results by access-type or comparison village
 - Figure: appliance-hours-detail
 - 2016-02-22-appliance-hours-detail.ipynb
